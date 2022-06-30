@@ -1,6 +1,5 @@
 "use strict";
-var msg = 'hello world';
-// console.log(msg);
+let msg = 'hello world';
 var UserStatus;
 (function (UserStatus) {
     UserStatus[UserStatus["Administrator"] = 1] = "Administrator";
@@ -9,16 +8,15 @@ var UserStatus;
     UserStatus[UserStatus["Editor"] = 4] = "Editor";
     UserStatus[UserStatus["Subscriber"] = 5] = "Subscriber";
 })(UserStatus || (UserStatus = {}));
-var EDIT_ROLES = [
+const EDIT_ROLES = [
     UserStatus.Administrator,
     UserStatus.Author,
     UserStatus.Editor,
 ];
 function isEditActionAvailable(user) {
-    // return user.status === UserStatus.Administrator || user.status === UserStatus.Author || user.status === UserStatus.Editor;
     return EDIT_ROLES.includes(user.status);
 }
-var dayz = {
+const dayz = {
     firstName: 'new',
     lastName: 'dayz',
     status: UserStatus.Administrator,

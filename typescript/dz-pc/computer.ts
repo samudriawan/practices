@@ -1,4 +1,12 @@
-import { getIntelCpu, getGpuDetails, ICpu, IGraphic } from './index';
+import {
+	getCpuDetails,
+	getGpuDetails,
+	ICpu,
+	IGraphic,
+	CpuSeries,
+	GraphicModel,
+	Brand,
+} from './index';
 
 class Computer {
 	public constructor(private cpu: ICpu, private gpu: IGraphic) {}
@@ -14,8 +22,8 @@ class Computer {
 	}
 }
 
-const Cpu = getIntelCpu('i9');
-const Gpu = getGpuDetails('rtx3050');
+const Cpu = getCpuDetails(Brand.intel, CpuSeries.i5);
+const Gpu = getGpuDetails(GraphicModel.rtx3050);
 
 const starterPC = new Computer(Cpu, Gpu);
 console.log(starterPC.getCpu());

@@ -1,82 +1,83 @@
-import { Brand, ICpu } from './partModel';
-
-enum Series {
-	i5 = 'I5-10400F',
-	i7 = 'I7-12700K',
-	i9 = 'I9-12900K',
-	r5g = 'Ryzen 5 5600G',
-	r5 = 'Ryzen 5 5600X',
-	r7 = 'Ryzen 7 5800X',
-}
+import { Brand, ICpu, CpuSeries } from './partModel';
 
 const processors: ICpu[] = [
 	{
 		brand: Brand.intel,
-		series: Series.i5,
+		series: CpuSeries.i5,
 		numberCores: 6,
 	},
 	{
 		brand: Brand.intel,
-		series: Series.i7,
+		series: CpuSeries.i7,
 		numberCores: 12,
 	},
 	{
 		brand: Brand.intel,
-		series: Series.i9,
+		series: CpuSeries.i9,
 		numberCores: 16,
 	},
 	{
 		brand: Brand.amd,
-		series: Series.r5g,
+		series: CpuSeries.r5g,
 		numberCores: 6,
 	},
 	{
 		brand: Brand.amd,
-		series: Series.r5,
+		series: CpuSeries.r5,
 		numberCores: 6,
 	},
 	{
 		brand: Brand.amd,
-		series: Series.r7,
+		series: CpuSeries.r7,
 		numberCores: 8,
 	},
 ];
 
-const getCpuDetails = (cpu: ICpu[], series: string) => {
-	let cpuIndex: number;
-	switch (series) {
-		case 'i5':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.i5);
-			break;
-		case 'i7':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.i7);
-			break;
-		case 'i9':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.i9);
-			break;
-		case 'r5g':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.r5g);
-			break;
-		case 'r5':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.r5);
-			break;
-		case 'r7':
-			cpuIndex = cpu.findIndex((cpu) => cpu.series === Series.r7);
-			break;
-		// default:
-		// 	return 'processor series not found!';
-	}
+export const getCpuDetails = (brand: string, series: string) => {
+	let cpu: ICpu[] = [];
+	let cpuIndex: number = 0;
+
+	cpu = selectCpuBrand(brand);
+	cpuIndex = getCpuSeries(cpu, series);
+
 	return cpu[cpuIndex];
 };
 
-export const getIntelCpu = (series: string) => {
-	const cpu = processors.filter((cpu) => cpu.brand === Brand.intel);
-	return getCpuDetails(cpu, series);
-};
-export const getAmdCpu = (series: string) => {
-	const cpu = processors.filter((cpu) => cpu.brand === Brand.amd);
-	return getCpuDetails(cpu, series);
+const selectCpuBrand = (brand: string): ICpu[] => {
+	let cpu: ICpu[] = [];
+	if (brand === Brand.intel)
+		return (cpu = processors.filter((cpu) => cpu.brand === Brand.intel));
+	if (brand === Brand.amd)
+		return (cpu = processors.filter((cpu) => cpu.brand === Brand.amd));
+	return cpu;
 };
 
-// console.log(getIntelCpu('i9'));
-// console.log(getAmdCpu('r5g'));
+const getCpuSeries = (cpu: ICpu[], series: string): number => {
+	let cpuArray: ICpu[] = cpu;
+	let cpuIndex: number = 0;
+
+	switch (series) {
+		case CpuSeries.i5:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.i5);
+			break;
+		case CpuSeries.i7:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.i7);
+			break;
+		case CpuSeries.i9:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.i9);
+			break;
+		case CpuSeries.r5g:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.r5g);
+			break;
+		case CpuSeries.r5:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.r5);
+			break;
+		case CpuSeries.r7:
+			cpuIndex = cpuArray.findIndex((cpu) => cpu.series === CpuSeries.r7);
+			break;
+	}
+	return cpuIndex;
+};
+
+// console.log(getCpuDetails(Brand.intel, CpuSeries.i7));
+// console.log(getCpuDetails(Brand.amd, CpuSeries.r7));
