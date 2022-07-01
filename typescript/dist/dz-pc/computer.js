@@ -1,23 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("./index");
+exports.Computer = void 0;
+const components_1 = require("./utils/components");
 class Computer {
-    constructor(cpu, gpu) {
-        this.cpu = cpu;
-        this.gpu = gpu;
+    constructor(processor, graphic, motherboard) {
+        this.processor = processor;
+        this.graphic = graphic;
+        this.motherboard = motherboard;
     }
-    getCpu() {
-        const { brand, series, numberCores } = this.cpu;
-        return `PROCESSOR\nBrand: ${brand}\nSeries: ${series}\nNumber of Cores: ${numberCores}`;
+    get Processor() {
+        return `PROCESSOR:\nBrand: ${this.processor.brand}\nSeries: ${this.processor.series}\nNumber of Cores: ${this.processor.numberCores}`;
     }
-    getGraphic() {
-        const { model, brand } = this.gpu;
-        return `GRAPHIC\nModel: ${model}\nChipset Manufacturer: ${brand}`;
+    get Graphic() {
+        return `GRAPHIC:\nModel: ${this.graphic.model}\nChipset Manufacturer: ${this.graphic.brand}`;
+    }
+    get Motherboard() {
+        return `MOTHERBOARD:\nModel: ${this.motherboard.model}\nForm Factor: ${this.motherboard.formFactor}\nWi-Fi: ${this.motherboard.wifi}`;
     }
 }
-const Cpu = (0, index_1.getCpuDetails)("Intel", "I5-10400F");
-const Gpu = (0, index_1.getGpuDetails)("GeForce RTX 3050");
-const starterPC = new Computer(Cpu, Gpu);
-console.log(starterPC.getCpu());
-console.log(starterPC.getGraphic());
+exports.Computer = Computer;
+const starterPC = new Computer(new components_1.Processor("Intel", "I5-10400F").GetProcessor(), new components_1.Graphic("GeForce RTX 3050").getGpuDetails(), new components_1.Motherboard('ASUS B560', 'ATX', 'Included').Motherboard);
+console.log(starterPC.Processor);
+console.log(starterPC.Graphic);
+console.log(starterPC.Motherboard);
 //# sourceMappingURL=computer.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"peripherals.js","sourceRoot":"","sources":["../../../dz-pc/data/peripherals.ts"],"names":[],"mappings":";AAkCA;IACC;QACC,KAAK,EAAE,eAAe;QACtB,KAAK,EAAE,KAAK;KACZ;IACD;QACC,KAAK,EAAE,kBAAkB;QACzB,KAAK,EAAE,QAAQ;KACf;IACD;QACC,KAAK,EAAE,kBAAkB;QACzB,KAAK,EAAE,QAAQ;KACf;IACD;QACC,KAAK,EAAE,qBAAqB;QAC5B,KAAK,EAAE,QAAQ;KACf;CACD,CAAC"}
